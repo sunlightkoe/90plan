@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[日光團隊]愛樂唯90天行動計劃</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body{font-family:"Noto Sans TC",system-ui,-apple-system,Segoe UI,Roboto;margin:0;background:linear-gradient(180deg,#fff4e6,#ffe8d0);color:#33231a}
+.brand{display:flex;align-items:center;gap:12px;padding:16px 20px;background:#ffcf99;border-bottom:1px solid #f5b780}
+.brand img{width:52px;height:52px;object-fit:contain}
+.brand .name{font-weight:800;font-size:18px}
+.container{max-width:960px;margin:0 auto;padding:16px}
+.card{background:#fffaf3;border-radius:16px;box-shadow:0 10px 30px rgba(198,120,64,.25);padding:16px;border:1px solid #ffd4ad}
+.row{display:flex;gap:16px;flex-wrap:wrap}
+.col{flex:1 1 280px}
+.title{font-weight:800;font-size:20px;margin:0 0 8px;color:#7a3a10}
+.muted{color:#7b6a5f;font-size:14px}
+.input{width:100%;padding:10px 12px;border:1px solid #e6b98e;border-radius:10px;background:#fff;font-size:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:#ea8a37;color:#fff;border:none;border-radius:12px;padding:10px 14px;font-weight:700;font-size:16px;cursor:pointer}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+.pill{display:inline-block;background:#fff3e6;color:#c45a12;padding:6px 10px;border-radius:999px;font-size:14px;border:1px solid #ffd0a6}
+.countdown{font-weight:800;font-size:24px;color:#c62828}
+.cards{display:flex;gap:12px;flex-wrap:wrap}
+.cal{margin-top:12px}
+.cal .cal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;color:#7a3a10;font-weight:800}
+.cal .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.cal .cal-cell{background:#fff;border:1px solid #ffd4ad;border-radius:10px;min-height:48px;display:flex;align-items:center;justify-content:center;color:#6a2f0a;font-weight:700}
+.cal .cal-dow{background:#fff8ef;border:1px solid #ffd4ad;color:#7b6a5f;font-size:13px;font-weight:800}
+.cal .cal-empty{background:transparent;border:none}
+.cal .cal-today{border:2px solid #ea8a37;background:#fff8ef;color:#ea8a37}
+.deck{display:flex;gap:16px}
+.card-item{flex:1;background:#fff;border:2px dashed #ffd0a6;border-radius:16px;padding:16px;min-height:180px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;cursor:pointer;color:#6a2f0a}
+.card-item.revealed{border:2px solid #ea8a37;background:#fff8ef}
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);display:none;align-items:center;justify-content:center}
+.modal{background:#fffaf3;border-radius:16px;max-width:420px;width:90%;padding:20px;border:1px solid #ffd4ad}
+.space{height:12px}
+.section-title{font-size:18px;font-weight:800;margin:0 0 8px;color:#7a3a10}
+.textarea{width:100%;min-height:160px;padding:10px 12px;border:1px solid #e6b98e;border-radius:10px;font-size:14px;background:#fff}
+.footer{padding:24px;text-align:center;color:#8a705c;font-size:13px}
+.links{display:flex;justify-content:center;gap:14px;margin-top:8px}
+.links a{display:inline-flex;align-items:center;gap:6px;color:#7a3a10;text-decoration:none;font-weight:800;cursor:pointer}
+.links a:hover{opacity:.8}
+.icon{width:18px;height:18px}
+.card-links{background:#f3fff6;border:1px solid #cfead5}
+.card-links .section-title{color:#8a2a2a}
+.card-links .links a{color:#8a2a2a}
+.card-blue{background:#f1f7ff;border:1px solid #cfe1ff}
+.img-row{display:flex;gap:12px;flex-wrap:wrap}
+.img-card img{width:100%;height:auto;border-radius:12px;border:1px solid #ddd}
+.card-pink{background:#fff1f5;border:1px solid #f8c7d3}
+.names{display:flex;gap:8px;flex-wrap:wrap}
+.name-pill{display:inline-block;background:#ffe8ef;color:#8a2a2a;border:1px solid #f6b8c6;border-radius:999px;padding:6px 10px;font-weight:800;font-size:13px}
+
+.links{display:flex;justify-content:center;gap:14px;margin-top:8px}
+.links a{display:inline-flex;align-items:center;gap:6px;color:#7a3a10;text-decoration:none;font-weight:800}
+.links a:hover{opacity:.8}
+.icon{width:18px;height:18px}
+.footer .links{display:flex;justify-content:center;gap:14px;margin-top:8px}
+.footer .links a{display:inline-flex;align-items:center;gap:6px;color:#7a3a10;text-decoration:none;font-weight:800}
+.footer .links a:hover{opacity:.8}
+.icon{width:18px;height:18px}
+</style>
+</head>
+<body>
+<div class="brand">
+  <img src="sunlightlogo.png" alt="Sunlight KOE"/>
+  <div class="name">日光愛樂唯· 90天行動計劃</div>
+</div>
+<div class="container">
+  <div id="view-start" class="card">
+    <div class="title">啟動你的90天愛樂唯計劃</div>
+    <div class="muted">輸入姓名與90天目標聘階以開始，系統會自動計算每日進度</div>
+    <div class="space"></div>
+    <input id="nickname" class="input" placeholder="姓名" />
+    <div class="space"></div>
+    <input id="rankTarget" class="input" placeholder="90天目標聘階" />
+    <div class="space"></div>
+    <div class="row">
+      <div class="col"><input id="pv30" class="input" placeholder="30天 PV" /></div>
+      <div class="col"><input id="pv60" class="input" placeholder="60天 PV" /></div>
+    </div>
+    <div class="space"></div>
+    <input id="pv90" class="input" placeholder="90天 PV" />
+    <div class="space"></div>
+    <div class="muted">健康計畫：請選擇 快速瘦 或 快樂瘦</div>
+    <div class="space"></div>
+    <div class="row">
+      <div class="col">
+        <label class="input" style="display:flex;align-items:center;gap:8px">
+          <input type="radio" name="healthPlanType" id="healthFast" value="快速瘦" />
+          快速瘦
+        </label>
+      </div>
+      <div class="col">
+        <label class="input" style="display:flex;align-items:center;gap:8px">
+          <input type="radio" name="healthPlanType" id="healthHappy" value="快樂瘦" />
+          快樂瘦
+        </label>
+      </div>
+    </div>
+    <div class="space"></div>
+    <div class="row">
+      <div class="col"><input id="hp30" class="input" placeholder="30天：" /></div>
+      <div class="col"><input id="hp60" class="input" placeholder="60天：" /></div>
+    </div>
+    <div class="space"></div>
+    <input id="hp90" class="input" placeholder="90天：" />
+    <div class="space"></div>
+    <button id="startBtn" class="btn">開始</button>
+  </div>
+
+  <div id="view-daily" class="card" style="display:none">
+    <div class="row">
+      <div class="col">
+        <div class="title">第 <span id="dayNum"></span> 天／共90天</div>
+        <div class="muted">姓名：<span id="nicknameLabel"></span>｜目標聘階：<span id="rankLabel"></span>｜30天 PV：<span id="pv30Label"></span>｜60天 PV：<span id="pv60Label"></span>｜90天 PV：<span id="pv90Label"></span></div>
+        <div class="muted">健康計畫：<span id="healthPlanLabel"></span></div>
+        <div class="muted">30天：<span id="hp30Label"></span>｜60天：<span id="hp60Label"></span>｜90天：<span id="hp90Label"></span></div>
+        <div class="space"></div>
+        <span id="statusPill" class="pill"></span>
+      </div>
+      <div class="col" style="text-align:right">
+        <div class="muted">第1天：<span id="startDate"></span>｜第90天：<span id="endDate"></span></div>
+        <div class="space"></div>
+        <div class="countdown"><span id="countdownNum"></span></div>
+        <div class="space"></div>
+        <button id="resetBtn" class="btn" style="background:#8a2a2a">重設計劃</button>
+      </div>
+    </div>
+    <div class="space"></div>
+    <div class="deck">
+      <div id="cardHumor" class="card-item">每日一抽</div>
+      <div id="cardKnowledge" class="card-item">能量指引</div>
+      <div id="cardAction" class="card-item">今日行動</div>
+    </div>
+    <div class="space"></div>
+    <div id="actionImages" class="img-row">
+      <div class="card img-card" style="flex:1 1 320px">
+        <div class="section-title">消費者：90天計畫-賺健康</div>
+        <img src="consumer_plan.png.png" alt="消費者90天計畫-賺健康" />
+      </div>
+      <div class="card img-card" style="flex:1 1 320px">
+        <div class="section-title">分享者：90天計畫-月收入1~5萬</div>
+        <img src="sharer_plan.png.png" alt="分享者90天計畫-月收入1~5萬" />
+      </div>
+      <div class="card img-card" style="flex:1 1 320px">
+        <div class="section-title">經營者：90天計畫-月收入5~30萬</div>
+        <img src="operator_plan.png.png" alt="經營者90天計畫-月收入5~30萬" />
+      </div>
+    </div>
+    <div id="calendarCard" class="card">
+      <div class="section-title">當月日曆</div>
+      <div id="calendar" class="cal"></div>
+    </div>
+    <div id="linksCard" class="card card-links">
+      <div class="section-title">日光資源</div>
+      <div class="links">
+        <a href="https://weighttrack-nybjgcue.manus.space/" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <circle cx="12" cy="12" r="8" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4" stroke-width="2"/>
+          </svg>
+          餐量管理
+        </a>
+        <a href="https://www.facebook.com/share/1AKXeZNDvd" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7v-3h3.4V9.5c0-3.3 2-5.1 5-5.1 1.4 0 2.8.3 2.8.3v3h-1.6c-1.6 0-2.1 1-2.1 2V12h3.6l-.6 3h-3v7A10 10 0 0 0 22 12Z"/></svg>
+          FB
+        </a>
+        <a href="https://alfawise.world" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" stroke-width="2"/>
+            <line x1="12" y1="2" x2="12" y2="5" stroke-width="2"/>
+            <line x1="12" y1="19" x2="12" y2="22" stroke-width="2"/>
+            <line x1="2" y1="12" x2="5" y2="12" stroke-width="2"/>
+            <line x1="19" y1="12" x2="22" y2="12" stroke-width="2"/>
+            <line x1="4.22" y1="4.22" x2="6.34" y2="6.34" stroke-width="2"/>
+            <line x1="17.66" y1="17.66" x2="19.78" y2="19.78" stroke-width="2"/>
+            <line x1="4.22" y1="19.78" x2="6.34" y2="17.66" stroke-width="2"/>
+            <line x1="17.66" y1="6.34" x2="19.78" y2="4.22" stroke-width="2"/>
+          </svg>
+          日光官網
+        </a>
+        <a href="https://ai168.tw" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <circle cx="6" cy="12" r="3" stroke-width="2"/>
+            <circle cx="18" cy="6" r="3" stroke-width="2"/>
+            <circle cx="18" cy="18" r="3" stroke-width="2"/>
+            <line x1="9" y1="11" x2="15" y2="7" stroke-width="2"/>
+            <line x1="9" y1="13" x2="15" y2="17" stroke-width="2"/>
+          </svg>
+          百業互聯
+        </a>
+      </div>
+    </div>
+    
+    <div id="followupManageCard" class="card card-pink">
+      <div class="section-title">名單跟進管理</div>
+      <div class="row">
+        <div class="col"><input id="builderInput" class="input" placeholder="經營者姓名（輸入後按新增）" /></div>
+        <div class="col"><button id="addBuilderBtn" class="btn" style="width:100%">新增經營者</button></div>
+      </div>
+      <div class="space"></div>
+      <div id="builderCards" class="cards"></div>
+      <div class="space"></div>
+      <div class="row">
+        <div class="col"><input id="customerInput" class="input" placeholder="消費者姓名（輸入後按新增）" /></div>
+        <div class="col"><button id="addCustomerBtn" class="btn" style="width:100%">新增消費者</button></div>
+      </div>
+      <div class="space"></div>
+      <div id="customerCards" class="cards"></div>
+      <div class="muted">提示：長按名字膠囊 0.6 秒可刪除</div>
+    </div>
+    
+    <div class="space"></div>
+    <div id="planInputCard" class="card card-blue">
+      <div class="section-title">行動計畫</div>
+      <div class="row">
+        <div class="col"><input id="planDate" class="input" type="date" placeholder="日期" /></div>
+        <div class="col"><input id="planTarget" class="input" placeholder="目標" /></div>
+      </div>
+      <div class="space"></div>
+      <div class="row">
+        <div class="col"><input id="planTime1" class="input" type="time" placeholder="時間1" /></div>
+        <div class="col"><input id="planAction1" class="input" placeholder="行動內容1" /></div>
+      </div>
+      <div class="space"></div>
+      <div class="row">
+        <div class="col"><input id="planTime2" class="input" type="time" placeholder="時間2" /></div>
+        <div class="col"><input id="planAction2" class="input" placeholder="行動內容2" /></div>
+      </div>
+      <div class="space"></div>
+      <div class="row">
+        <div class="col"><input id="planTime3" class="input" type="time" placeholder="時間3" /></div>
+        <div class="col"><input id="planAction3" class="input" placeholder="行動內容3" /></div>
+      </div>
+      <div class="space"></div>
+      <div class="row">
+        <div class="col"><input id="planTime4" class="input" type="time" placeholder="時間4" /></div>
+        <div class="col"><input id="planAction4" class="input" placeholder="行動內容4" /></div>
+      </div>
+      <div class="space"></div>
+      <div class="row">
+        <div class="col"><input id="planTime5" class="input" type="time" placeholder="時間5" /></div>
+        <div class="col"><input id="planAction5" class="input" placeholder="行動內容5" /></div>
+      </div>
+      <div class="space"></div>
+      <button id="addPlanBtn" class="btn">新增卡片</button>
+    </div>
+    <div class="space"></div>
+    <div id="planCards" class="cards"></div>
+    
+    <div class="space"></div>
+    
+    
+    <div class="space"></div>
+    <button id="completeBtn" class="btn" style="display:none">標記今日完成</button>
+  </div>
+
+  
+
+  <div class="footer">© 90天消費共營計劃.mata設計</div>
+</div>
+
+<div id="deleteModalBackdrop" class="modal-backdrop">
+  <div class="modal">
+    <div class="title">是否刪除這個名字？</div>
+    <div class="space"></div>
+    <div class="row">
+      <div class="col">
+        <button id="deleteYes" class="btn" style="width:100%">是</button>
+      </div>
+      <div class="col">
+        <button id="deleteNo" class="btn" style="width:100%;background:#8a2a2a">否</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="modalBackdrop" class="modal-backdrop">
+  <div class="modal">
+    <div class="title">今日行動是否完成？</div>
+    <div class="space"></div>
+    <div class="row">
+      <div class="col">
+        <button id="modalYes" class="btn" style="width:100%">是，已完成</button>
+      </div>
+      <div class="col">
+        <button id="modalNo" class="btn" style="width:100%;background:#8a2a2a">否，尚未</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script id="presetData" type="application/json">
+{
+  "actions": [
+    "第1天：認清直銷的本質—分享價值，而不是推銷產品",
+    "第2天：設定你的90天目標（收入目標、團隊目標、學習目標）",
+    "第3天：熟悉公司背景、產品線、制度與品牌定位",
+    "第4天：建立你的個人故事（為何加入？為何是現在？）",
+    "第5天：列出你人生5大動力（健康、家人、財務、時間、夢想）",
+    "第6天：理解複製的重要性：簡單、可講、可複製",
+    "第7天：建立你的前三支必講話術：介紹自己 / 介紹產品 / 介紹商機",
+    "第8天：了解產品的核心價值（簡單、有效、好喝、方便）",
+    "第9天：學會說人話，而不是技術話（避免深奧成分）",
+    "第10天：每天使用產品，成為最佳見證者",
+    "第11天：學會用3句話講完產品",
+    "第12天：練習30秒產品故事",
+    "第13天：練習30秒商機故事",
+    "第14天：學習溝通三要素：真誠、利益、簡單",
+    "第15天：建立名單—不限親友，從需求找人而不是關係找人",
+    "第16天：名單分類（A熱、B溫、C冷）",
+    "第17天：學會需求問句（為什麼想變健康？為什麼想額外收入？）",
+    "第18天：學會找痛點不找對錯",
+    "第19天：建立每天3人以上聯繫習慣",
+    "第20天：學習社群溝通，不要硬塞資訊",
+    "第21天：練習講出產品的三大客戶族群",
+    "第22天：學會用見證說話，不要自己誇",
+    "第23天：蒐集5個消費者見證",
+    "第24天：蒐集5個分享者見證",
+    "第25天：蒐集3個經營者見證",
+    "第26天：學會用圖表、數字建立信任感",
+    "第27天：產品體驗日記—成為最佳示範",
+    "第28天：學會面對質疑（保持專業，不要反擊）",
+    "第29天：了解團隊文化與規則（你不是一個人）",
+    "第30天：學會複製團隊最有效流程",
+    "第31天：練習一起行動而不是單打獨鬥",
+    "第32天：學會在團隊群組專業發言",
+    "第33天：固定參與每週會議",
+    "第34天：與上線確認你的目標與進度",
+    "第35天：觀摩一次上線的分享流程",
+    "第36天：開始引導朋友加入體驗產品",
+    "第37天：學會做一場簡單產品體驗會",
+    "第38天：學會使用簡報或PPT輔助（越簡單越好）",
+    "第39天：學會帶新人認識產品流程",
+    "第40天：學會如何協助新人訂第一單",
+    "第41天：理解「不是每個人都會加入」是正常的",
+    "第42天：學會找對人，而不是找所有人",
+    "第43天：建立每日成功追蹤表（聯繫、邀約、成交）",
+    "第44天：學會整理顧客資料",
+    "第45天：顧客服務：學會三階段回訪（1天、7天、30天）",
+    "第46天：學會用問題式銷售（不是推，是讓對方說）",
+    "第47天：累積你的成功案例",
+    "第48天：學會用故事帶出價值，而不是理論",
+    "第49天：開始練習1對1商機說明",
+    "第50天：學會什麼是「消費者→分享者→經營者」的路徑",
+    "第51天：開始引導消費者分享心得",
+    "第52天：提供你的客戶可複製的內容（文字、影片、照片）",
+    "第53天：學會組織裂變的正確心法",
+    "第54天：建立屬於你的團隊群組",
+    "第55天：帶著新人一起行動—不是叫他做，是你做給他看",
+    "第56天：學會開線上說明會（Zoom/LINE）",
+    "第57天：學會快速講制度，不講太多細節",
+    "第58天：學會公司最有力量的制度亮點",
+    "第59天：學會用制度鼓勵新人，而不是壓力",
+    "第60天：了解直銷中最難的是「堅持」不是「技巧」",
+    "第61天：了解你的情緒管理",
+    "第62天：避免三大新人陷阱：分析太多、問太多、做太少",
+    "第63天：不要與負面的人糾纏，把時間放在願意的人身上",
+    "第64天：學會拍攝短影片介紹產品（簡單故事即可）",
+    "第65天：打造你的個人品牌（健康、生活、理念）",
+    "第66天：建立社群排程（固定分享價值、見證、生活）",
+    "第67天：建立你的產品資料庫（圖、文、影片）",
+    "第68天：建立你的常見QA資料庫",
+    "第69天：整理你的演講話術（開場、產品、商機）",
+    "第70天：學會做一場15分鐘商機說明",
+    "第71天：了解誰才是你的真正市場（需求>關係）",
+    "第72天：學會三大成交技巧：選擇題、見證、下一步",
+    "第73天：學會如何讓顧客願意持續使用產品",
+    "第74天：學會讓顧客轉介紹、轉分享",
+    "第75天：開始培育第一位經營者",
+    "第76天：學會分辨想做 vs. 真的會做的人",
+    "第77天：把焦點放在3個願意做的人，而不是抱怨的人",
+    "第78天：回顧你的產品故事並更新版本",
+    "第79天：回顧你的商機故事並更新版本",
+    "第80天：整理你的每月數據（邀約/成交/續訂）",
+    "第81天：建立你的個人90天循環系統",
+    "第82天：把流程簡化給你的新人（越簡單越能複製）",
+    "第83天：建立你的「一頁式產品講義」",
+    "第84天：建立你的「一頁式商機講義」",
+    "第85天：學會激勵團隊（肯定、陪伴、方向）",
+    "第86天：學會處理團隊問題（溝通、調整、延續）",
+    "第87天：建立你的團隊文化（正面、行動、紀律）",
+    "第88天：打造一個新人7天啟動流程",
+    "第89天：打造一個新人30天複製流程",
+    "第90天：調整下一個90天目標—正式進入領導者角色"
+  ],
+  "knowledge": [
+    "第1天：今天開始，我選擇成為更好的自己，而不是更好的別人。",
+    "第2天：真正能改變人生的，是我每天一點點的行動。",
+    "第3天：成功不靠運氣，而是靠持續出現。",
+    "第4天：我有能力學會任何讓我成功的技能。",
+    "第5天：每一次分享，都讓我更接近我的目標。",
+    "第6天：我值得賺更多，也值得更好的生活。",
+    "第7天：拒絕不是否定，是提醒我要找到對的人。",
+    "第8天：行動治百憂，不行動才會焦慮。",
+    "第9天：我越專業，客戶越信任我。",
+    "第10天：先成為那個讓人願意跟隨的人。",
+    "第11天：每天學一點，半年後我會有巨大差距。",
+    "第12天：困難不是阻礙，而是成長的入口。",
+    "第13天：怕什麼學什麼，缺什麼補什麼。",
+    "第14天：我值得擁有我的目標，也有資格追求它。",
+    "第15天：我選擇相信自己，而不是懷疑自己。",
+    "第16天：今天的努力，是明天的禮物。",
+    "第17天：我不需要一次做完，只需要開始做。",
+    "第18天：越分享，越幸運；越行動，越成功。",
+    "第19天：每次開口，就是一次練功。",
+    "第20天：我不是推銷，我是在提供價值。",
+    "第21天：我說的話，對的人會聽得懂。",
+    "第22天：我專注在願意的人，而不是浪費在拒絕的人。",
+    "第23天：做對的事情，比討好每一個人重要。",
+    "第24天：成功不是看速度，而是看方向。",
+    "第25天：我每天都在累積能量，而不是浪費時間。",
+    "第26天：我越鍛鍊，越自信。",
+    "第27天：同樣的苦，成功的人選擇堅持，平庸的人選擇放棄。",
+    "第28天：我不比較，我進步就好。",
+    "第29天：越想做大，就越要提升自己的格局。",
+    "第30天：我願意為我的未來負責，不怪罪、不抱怨。",
+    "第31天：我值得被看見，也值得被選擇。",
+    "第32天：只要不放棄，晚一點成功不是問題。",
+    "第33天：成功不是爆發，是累積。",
+    "第34天：我的夢想需要我主動捍衛。",
+    "第35天：我相信自己所做的每一步都算數。",
+    "第36天：我越正面，越能吸引正面的人。",
+    "第37天：我用態度創造機會。",
+    "第38天：恐懼是假象，行動才是真的力量。",
+    "第39天：沒有一件小事是不重要的。",
+    "第40天：我正在成為團隊中可靠的人。",
+    "第41天：每天一點勇氣，很快我會變得不可阻擋。",
+    "第42天：成功者不是沒有壓力，是能把壓力變成力量。",
+    "第43天：我把挫折當老師，而不是敵人。",
+    "第44天：如果我願意學，我就一定會變強。",
+    "第45天：我做每件事都值得未來的我感謝。",
+    "第46天：我的行動會創造結果，而不是運氣。",
+    "第47天：我在挑戰自己，而不是討好任何人。",
+    "第48天：習慣不會騙人，結果會。",
+    "第49天：我越努力，就越有選擇權。",
+    "第50天：我要讓家人、團隊、未來的我感到驕傲。",
+    "第51天：我不是孤單，我是團隊的一份力量。",
+    "第52天：我的價值會吸引值得的人。",
+    "第53天：現在的付出，是未來的被動收入。",
+    "第54天：我靠專業建立信任，不靠話術。",
+    "第55天：每次練習，都讓我離高手更近一步。",
+    "第56天：我的故事，就是最好的推廣工具。",
+    "第57天：我願意再多走一步，因為那一步通常有奇蹟。",
+    "第58天：我不是被要求，我是自願成功。",
+    "第59天：我做的每個決定，都讓我的生活更清晰。",
+    "第60天：目標是我的方向，不是我的壓力。",
+    "第61天：當我變得穩定，收入也會變得穩定。",
+    "第62天：我要吸引同頻的人，而不是硬拉不願意的人。",
+    "第63天：放大長處，而不是盯著短處。",
+    "第64天：我願意為自己的夢想努力到讓自己感動。",
+    "第65天：我越清楚自己的價值，越能影響他人。",
+    "第66天：不急於結果，只踏實於行動。",
+    "第67天：我正在打造一個循環收入的未來。",
+    "第68天：我不是找客戶，我是在找願意變好的人。",
+    "第69天：我越分享，越能吸引和我一樣的人。",
+    "第70天：我值得成功，也準備好成功。",
+    "第71天：每天讓一件事比昨天更好，我就會變強。",
+    "第72天：我每講一次，我就進步一次。",
+    "第73天：我不是在工作，而是在打造我的事業。",
+    "第74天：我相信付出不會白費。",
+    "第75天：成功需要時間，而我願意等待又努力。",
+    "第76天：我成為別人生命中的改變者。",
+    "第77天：我越穩定，越能帶出穩定的團隊。",
+    "第78天：不被看好不等於做不到。",
+    "第79天：真正的高手都是從笨拙開始的。",
+    "第80天：我每天都在為自己的夢想前進。",
+    "第81天：我選擇勇敢，而不是退縮。",
+    "第82天：我比自己想像的更有力量。",
+    "第83天：我相信自己可以做到，即使需要時間。",
+    "第84天：我的成功，是日積月累的結果。",
+    "第85天：我正在成為領袖，而不是跟隨者。",
+    "第86天：我願意承擔，我也願意突破。",
+    "第87天：我相信我的團隊，也相信我的未來。",
+    "第88天：我值得被信任，也值得被跟隨。",
+    "第89天：我已經比 90 天前的自己更強大。",
+    "第90天：今天開始，我要把這份力量傳給下一個人。"
+  ]
+}
+</script>
+<script src="app.js"></script>
+</body>
+</html>
