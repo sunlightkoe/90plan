@@ -2,486 +2,584 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>[日光團隊]愛樂唯90天行動計劃</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[日光團隊] 愛樂唯 90天行動計畫 - 深度整合最終版</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-body{font-family:"Noto Sans TC",system-ui,-apple-system,Segoe UI,Roboto;margin:0;background:linear-gradient(180deg,#fff4e6,#ffe8d0);color:#33231a}
-.brand{display:flex;align-items:center;gap:12px;padding:16px 20px;background:#ffcf99;border-bottom:1px solid #f5b780}
+/* 核心樣式 */
+body{font-family:"Noto Sans TC",system-ui,-apple-system,Segoe UI,Roboto;margin:0;background:linear-gradient(180deg,#fff4e6,#ffe8d0);color:#33231a; min-height: 100vh;}
+.brand{display:flex;align-items:center;gap:12px;padding:16px 20px;background:#ffcf99;border-bottom:1px solid #f5b780; position:sticky; top:0; z-index:100;}
 .brand img{width:52px;height:52px;object-fit:contain}
 .brand .name{font-weight:800;font-size:18px}
 .container{max-width:960px;margin:0 auto;padding:16px}
-.card{background:#fffaf3;border-radius:16px;box-shadow:0 10px 30px rgba(198,120,64,.25);padding:16px;border:1px solid #ffd4ad}
-.row{display:flex;gap:16px;flex-wrap:wrap}
-.col{flex:1 1 280px}
+.card{background:#fffaf3;border-radius:16px;box-shadow:0 10px 30px rgba(198,120,64,.15);padding:16px;border:1px solid #ffd4ad; margin-bottom: 20px;}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.col{flex:1 1 200px}
 .title{font-weight:800;font-size:20px;margin:0 0 8px;color:#7a3a10}
 .muted{color:#7b6a5f;font-size:14px}
-.input{width:100%;padding:10px 12px;border:1px solid #e6b98e;border-radius:10px;background:#fff;font-size:16px}
-.btn{display:inline-flex;align-items:center;justify-content:center;background:#ea8a37;color:#fff;border:none;border-radius:12px;padding:10px 14px;font-weight:700;font-size:16px;cursor:pointer}
-.btn:disabled{opacity:.6;cursor:not-allowed}
-.pill{display:inline-block;background:#fff3e6;color:#c45a12;padding:6px 10px;border-radius:999px;font-size:14px;border:1px solid #ffd0a6}
+.input{width:100%;padding:10px 12px;border:1px solid #e6b98e;border-radius:10px;background:#fff;font-size:16px; box-sizing: border-box;}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:#ea8a37;color:#fff;border:none;border-radius:12px;padding:12px 14px;font-weight:700;font-size:16px;cursor:pointer; transition: 0.3s;}
+.btn:hover{background:#d4762a; opacity: 0.9;}
+.pill{display:inline-block;background:#fff3e6;color:#c45a12;padding:6px 10px;border-radius:999px;font-size:14px;border:1px solid #ffd0a6; font-weight: bold;}
 .countdown{font-weight:800;font-size:24px;color:#c62828}
-.cards{display:flex;gap:12px;flex-wrap:wrap}
-.cal{margin-top:12px}
-.cal .cal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;color:#7a3a10;font-weight:800}
-.cal .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
-.cal .cal-cell{background:#fff;border:1px solid #ffd4ad;border-radius:10px;min-height:48px;display:flex;align-items:center;justify-content:center;color:#6a2f0a;font-weight:700}
-.cal .cal-dow{background:#fff8ef;border:1px solid #ffd4ad;color:#7b6a5f;font-size:13px;font-weight:800}
-.cal .cal-empty{background:transparent;border:none}
-.cal .cal-today{border:2px solid #ea8a37;background:#fff8ef;color:#ea8a37}
-.deck{display:flex;gap:16px}
-.card-item{flex:1;background:#fff;border:2px dashed #ffd0a6;border-radius:16px;padding:16px;min-height:180px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;cursor:pointer;color:#6a2f0a}
-.card-item.revealed{border:2px solid #ea8a37;background:#fff8ef}
-.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);display:none;align-items:center;justify-content:center}
-.modal{background:#fffaf3;border-radius:16px;max-width:420px;width:90%;padding:20px;border:1px solid #ffd4ad}
-.space{height:12px}
-.section-title{font-size:18px;font-weight:800;margin:0 0 8px;color:#7a3a10}
-.textarea{width:100%;min-height:160px;padding:10px 12px;border:1px solid #e6b98e;border-radius:10px;font-size:14px;background:#fff}
-.footer{padding:24px;text-align:center;color:#8a705c;font-size:13px}
-.links{display:flex;justify-content:center;gap:14px;margin-top:8px}
-.links a{display:inline-flex;align-items:center;gap:6px;color:#7a3a10;text-decoration:none;font-weight:800;cursor:pointer}
-.links a:hover{opacity:.8}
-.icon{width:18px;height:18px}
-.card-links{background:#f3fff6;border:1px solid #cfead5}
-.card-links .section-title{color:#8a2a2a}
-.card-links .links a{color:#8a2a2a}
-.card-blue{background:#f1f7ff;border:1px solid #cfe1ff}
-.img-row{display:flex;gap:12px;flex-wrap:wrap}
-.img-card img{width:100%;height:auto;border-radius:12px;border:1px solid #ddd}
-.card-pink{background:#fff1f5;border:1px solid #f8c7d3}
-.names{display:flex;gap:8px;flex-wrap:wrap}
-.name-pill{display:inline-block;background:#ffe8ef;color:#8a2a2a;border:1px solid #f6b8c6;border-radius:999px;padding:6px 10px;font-weight:800;font-size:13px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px; margin-top:12px}
+.cal-cell{background:#fff;border:1px solid #ffd4ad;border-radius:10px;min-height:48px;display:flex;align-items:center;justify-content:center;color:#6a2f0a;font-weight:700}
+.cal-today{border:2px solid #ea8a37;background:#fff8ef;color:#ea8a37}
+.deck{display:flex;gap:12px}
+.card-item{flex:1;background:#fff;border:2px dashed #ffd0a6;border-radius:16px;padding:16px;min-height:120px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;cursor:pointer;color:#6a2f0a; text-align: center; transition: 0.2s;}
+.card-item.revealed{border:2px solid #ea8a37;background:#fff8ef; cursor: default;}
 
-.links{display:flex;justify-content:center;gap:14px;margin-top:8px}
-.links a{display:inline-flex;align-items:center;gap:6px;color:#7a3a10;text-decoration:none;font-weight:800}
-.links a:hover{opacity:.8}
-.icon{width:18px;height:18px}
-.footer .links{display:flex;justify-content:center;gap:14px;margin-top:8px}
-.footer .links a{display:inline-flex;align-items:center;gap:6px;color:#7a3a10;text-decoration:none;font-weight:800}
-.footer .links a:hover{opacity:.8}
-.icon{width:18px;height:18px}
+/* 圖片列樣式 */
+.img-row{display:flex;gap:12px;flex-wrap:wrap; margin-bottom: 20px;}
+.img-card{background: #fff; border-radius: 12px; padding: 10px; border: 1px solid #ffd4ad; flex: 1 1 280px; text-align: center;}
+.img-card img{width:100%; height:auto; border-radius: 8px; margin-top: 8px; border: 1px solid #ddd;}
+.img-card .img-title{font-weight: 800; color: #7a3a10; font-size: 14px;}
+
+/* 資源卡片樣式 */
+.resource-card { background: #f3fff6; border: 1px solid #cfead5; margin-top: 20px; }
+.resource-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 10px; }
+.resource-links a { display: inline-flex; align-items: center; gap: 6px; color: #2e7d32; text-decoration: none; font-weight: 800; font-size: 14px; }
+.resource-links a:hover { opacity: 0.8; }
+.icon { width: 18px; height: 18px; }
+
+/* 彈窗樣式 */
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center; z-index: 2000;}
+.modal{background:#fffaf3;border-radius:16px;max-width:420px;width:90%;padding:25px;border:1px solid #ffd4ad; text-align: center;}
+.textarea{width:100%;min-height:80px;padding:10px 12px;border:1px solid #e6b98e;border-radius:10px;font-size:14px;background:#fff; font-family: inherit;}
+
+/* 名單膠囊樣式 */
+.name-pill {
+    display: inline-flex; align-items: center; background: #fffaf3; color: #8a2a2a; 
+    border: 1px solid #ffd4ad; border-radius: 999px; padding: 6px 10px 6px 14px; 
+    font-weight: 800; font-size: 14px; cursor: pointer; gap: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.name-pill .del-btn {
+    width: 22px; height: 22px; background: rgba(0,0,0,0.08); 
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 16px; transition: 0.2s;
+}
+.name-pill .del-btn:hover { background: #c62828; color: #fff; }
+
+/* Dan Koe 風格組件 */
+.identity-banner { background: #7a3a10; color: #fff; padding: 16px; border-radius: 16px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(122,58,16,0.3); }
+.anti-vision-alert { background: #fff0f0; border-left: 5px solid #c62828; padding: 10px; border-radius: 8px; margin-top: 10px; }
+.card-dark { background: #33231a; color: #fffaf3; border: none; }
+.card-dark .title { color: #ffcf99; }
 </style>
 </head>
 <body>
+
 <div class="brand">
-  <img src="sunlightlogo.png" alt="Sunlight KOE"/>
-  <div class="name">日光愛樂唯· 90天行動計劃</div>
+  <img src="sunlightlogo.png" alt="日光" onerror="this.src='https://cdn-icons-png.flaticon.com/512/869/869869.png'"/>
+  <div class="name">日光愛樂唯· 90天蛻變旅程</div>
 </div>
+
 <div class="container">
-  <div id="view-start" class="card">
-    <div class="title">啟動你的90天愛樂唯計劃</div>
-    <div class="muted">輸入姓名與90天目標聘階以開始，系統會自動計算每日進度</div>
-    <div class="space"></div>
-    <input id="nickname" class="input" placeholder="姓名" />
-    <div class="space"></div>
-    <input id="rankTarget" class="input" placeholder="90天目標聘階" />
-    <div class="space"></div>
-    <div class="row">
-      <div class="col"><input id="pv30" class="input" placeholder="30天 PV" /></div>
-      <div class="col"><input id="pv60" class="input" placeholder="60天 PV" /></div>
+  <!-- 啟動視圖 (Start Page) -->
+  <div id="view-start">
+    <div class="card">
+        <div class="title">選擇你的 90 天蛻變計畫</div>
+        <div class="muted">在啟動前，請先確認你的目標與對應計畫圖</div>
+        <div style="height:15px"></div>
+        
+        <div class="img-row">
+            <div class="img-card">
+                <div class="img-title">🛒 消費者：賺健康</div>
+                <img src="consumer_plan.png.png" alt="消費者計畫" onerror="this.style.display='none'; this.after(' [圖表：consumer_plan.png.png] ')"/>
+            </div>
+            <div class="img-card">
+                <div class="img-title">📢 分享者：月入1~5萬</div>
+                <img src="sharer_plan.png.png" alt="分享者計畫" onerror="this.style.display='none'; this.after(' [圖表：sharer_plan.png.png] ')"/>
+            </div>
+            <div class="img-card">
+                <div class="img-title">💎 經營者：月入5~30萬</div>
+                <img src="operator_plan.png.png" alt="經營者計畫" onerror="this.style.display='none'; this.after(' [圖表：operator_plan.png.png] ')"/>
+            </div>
+        </div>
     </div>
-    <div class="space"></div>
-    <input id="pv90" class="input" placeholder="90天 PV" />
-    <div class="space"></div>
-    <div class="muted">健康計畫：請選擇 快速瘦 或 快樂瘦</div>
-    <div class="space"></div>
-    <div class="row">
-      <div class="col">
-        <label class="input" style="display:flex;align-items:center;gap:8px">
-          <input type="radio" name="healthPlanType" id="healthFast" value="快速瘦" />
-          快速瘦
-        </label>
-      </div>
-      <div class="col">
-        <label class="input" style="display:flex;align-items:center;gap:8px">
-          <input type="radio" name="healthPlanType" id="healthHappy" value="快樂瘦" />
-          快樂瘦
-        </label>
-      </div>
+
+    <div class="card">
+        <div class="title">輸入啟動參數</div>
+        <div class="row">
+            <div class="col"><input id="nickname" class="input" placeholder="姓名" /></div>
+            <div class="col"><input id="rankTarget" class="input" placeholder="90天蛻變目標" /></div>
+        </div>
+        
+        <div style="height:12px"></div>
+        <div class="row">
+          <div class="col"><input id="pv30" class="input" placeholder="30天 PV" /></div>
+          <div class="col"><input id="pv60" class="input" placeholder="31~60天 PV" /></div>
+          <div class="col"><input id="pv90" class="input" placeholder="61~90天 PV" /></div>
+        </div>
+
+        <div style="height:15px"></div>
+        <div class="muted">健康計畫類型</div>
+        <div class="row" style="margin-top:8px">
+          <div class="col">
+            <label class="input" style="display:flex;align-items:center;gap:8px">
+              <input type="radio" name="healthPlanType" value="快速瘦" checked /> 快速瘦
+            </label>
+          </div>
+          <div class="col">
+            <label class="input" style="display:flex;align-items:center;gap:8px">
+              <input type="radio" name="healthPlanType" value="快樂瘦" /> 快樂瘦
+            </label>
+          </div>
+        </div>
+        <div style="height:12px"></div>
+        <div class="row">
+          <div class="col"><input id="hp30" class="input" placeholder="30天健康目標?公斤" /></div>
+          <div class="col"><input id="hp60" class="input" placeholder="31~60天健康目標?公斤" /></div>
+          <div class="col"><input id="hp90" class="input" placeholder="61~90天健康目標?公斤" /></div>
+        </div>
+
+        <div style="height:25px"></div>
+        <div class="section-title" style="color: #c62828;">🚩 Dan Koe 反願景：失敗後的未來？</div>
+        <textarea id="antiVision" class="textarea" placeholder="描述如果你停止成長，三年後那個令你厭惡、慘痛的人生樣貌..."></textarea>
+        
+        <div style="height:15px"></div>
+        <div class="section-title" style="color: #2e7d32;">✨ 身分宣言：你想成為誰？</div>
+        <textarea id="identityGoal" class="textarea" placeholder="例如：我是一個致力於推廣健康、每日穩定產出價值的領袖。"></textarea>
+
+        <div style="height:30px"></div>
+        <button id="startBtn" class="btn" style="width: 100%; font-size: 18px;">啟動身分轉向並開始行動</button>
     </div>
-    <div class="space"></div>
-    <div class="row">
-      <div class="col"><input id="hp30" class="input" placeholder="30天：" /></div>
-      <div class="col"><input id="hp60" class="input" placeholder="60天：" /></div>
-    </div>
-    <div class="space"></div>
-    <input id="hp90" class="input" placeholder="90天：" />
-    <div class="space"></div>
-    <button id="startBtn" class="btn">開始</button>
   </div>
 
-  <div id="view-daily" class="card" style="display:none">
-    <div class="row">
-      <div class="col">
-        <div class="title">第 <span id="dayNum"></span> 天／共90天</div>
-        <div class="muted">姓名：<span id="nicknameLabel"></span>｜目標聘階：<span id="rankLabel"></span>｜30天 PV：<span id="pv30Label"></span>｜60天 PV：<span id="pv60Label"></span>｜90天 PV：<span id="pv90Label"></span></div>
-        <div class="muted">健康計畫：<span id="healthPlanLabel"></span></div>
-        <div class="muted">30天：<span id="hp30Label"></span>｜60天：<span id="hp60Label"></span>｜90天：<span id="hp90Label"></span></div>
-        <div class="space"></div>
-        <span id="statusPill" class="pill"></span>
-      </div>
-      <div class="col" style="text-align:right">
-        <div class="muted">第1天：<span id="startDate"></span>｜第90天：<span id="endDate"></span></div>
-        <div class="space"></div>
-        <div class="countdown"><span id="countdownNum"></span></div>
-        <div class="space"></div>
-        <button id="resetBtn" class="btn" style="background:#8a2a2a">重設計劃</button>
-      </div>
+  <!-- 每日執行視圖 (Daily View) -->
+  <div id="view-daily" style="display:none">
+    
+    <!-- 身分與心智階段橫幅 -->
+    <div class="identity-banner">
+        <div style="font-size: 12px; opacity: 0.8;">當前身分認同：</div>
+        <div id="displayIdentity" style="font-size: 18px; font-weight: 800; margin: 4px 0;"></div>
+        <div id="mindsetStage" style="font-size: 11px; background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 4px; display: inline-block;"></div>
     </div>
-    <div class="space"></div>
+
+    <!-- 計畫參考圖：每天都看得到 -->
+    <div class="card">
+        <div class="section-title">🗺️ 90天計畫藍圖參考</div>
+        <div class="muted">隨時核對你的階段性任務</div>
+        <div style="height:10px"></div>
+        <div class="img-row" style="margin-bottom: 0;">
+            <div class="img-card" style="flex: 1 1 150px; border: 1px solid #ffd4ad;">
+                <div class="img-title" style="font-size:12px;">🛒 消費者</div>
+                <img src="consumer_plan.png.png" alt="消費者" onerror="this.style.display='none'; this.after('[圖]')"/>
+            </div>
+            <div class="img-card" style="flex: 1 1 150px; border: 1px solid #ffd4ad;">
+                <div class="img-title" style="font-size:12px;">📢 分享者</div>
+                <img src="sharer_plan.png.png" alt="分享者" onerror="this.style.display='none'; this.after('[圖]')"/>
+            </div>
+            <div class="img-card" style="flex: 1 1 150px; border: 1px solid #ffd4ad;">
+                <div class="img-title" style="font-size:12px;">💎 經營者</div>
+                <img src="operator_plan.png.png" alt="經營者" onerror="this.style.display='none'; this.after('[圖]')"/>
+            </div>
+        </div>
+    </div>
+
+    <!-- 數據概覽與反願景 -->
+    <div class="card">
+        <div class="row">
+          <div class="col">
+            <div class="title">第 <span id="dayNum"></span> 天／進化之旅</div>
+            <div class="muted">姓名：<span id="nicknameLabel"></span>｜目標：<span id="rankLabel"></span></div>
+            <div class="muted">PV：<span id="pv30Label"></span> / <span id="pv60Label"></span> / <span id="pv90Label"></span></div>
+            <div class="muted">健康：<span id="healthPlanLabel"></span> (<span id="hp30Label"></span> / <span id="hp60Label"></span> / <span id="hp90Label"></span>)</div>
+            
+            <div class="anti-vision-alert">
+                <div style="font-size: 11px; color: #c62828; font-weight: 900;">⚠️ 反願景：拒絕淪為...</div>
+                <div id="displayAntiVision" style="font-size: 13px; font-style: italic;"></div>
+            </div>
+            
+            <div style="height:15px"></div>
+            <span id="statusPill" class="pill">今日尚未覺察</span>
+          </div>
+          <div class="col" style="text-align:right">
+            <div class="muted">開始：<span id="startDate"></span></div>
+            <div class="muted">結束：<span id="endDate"></span></div>
+            <div style="height:10px"></div>
+            <div class="countdown"><span id="countdownNum"></span></div>
+            <div class="muted">剩餘天數</div>
+            <button id="resetBtn" class="btn" style="background:#8a2a2a; font-size: 11px; margin-top:15px; padding: 6px 10px;">重設系統</button>
+          </div>
+        </div>
+    </div>
+
     <div class="deck">
-      <div id="cardHumor" class="card-item">每日一抽</div>
-      <div id="cardKnowledge" class="card-item">能量指引</div>
-      <div id="cardAction" class="card-item">今日行動</div>
+      <div id="cardHumor" class="card-item">🎭<br>每日一抽[可重複]</div>
+      <div id="cardKnowledge" class="card-item">💡<br>90天能量指引</div>
+      <div id="cardAction" class="card-item">🚀<br>今日認知</div>
     </div>
-    <div class="space"></div>
-    <div id="actionImages" class="img-row">
-      <div class="card img-card" style="flex:1 1 320px">
-        <div class="section-title">消費者：90天計畫-賺健康</div>
-        <img src="consumer_plan.png.png" alt="消費者90天計畫-賺健康" />
-      </div>
-      <div class="card img-card" style="flex:1 1 320px">
-        <div class="section-title">分享者：90天計畫-月收入1~5萬</div>
-        <img src="sharer_plan.png.png" alt="分享者90天計畫-月收入1~5萬" />
-      </div>
-      <div class="card img-card" style="flex:1 1 320px">
-        <div class="section-title">經營者：90天計畫-月收入5~30萬</div>
-        <img src="operator_plan.png.png" alt="經營者90天計畫-月收入5~30萬" />
-      </div>
-    </div>
-    <div id="calendarCard" class="card">
-      <div class="section-title">當月日曆</div>
-      <div id="calendar" class="cal"></div>
-    </div>
-    <div id="linksCard" class="card card-links">
-      <div class="section-title">日光資源</div>
-      <div class="links">
-        <a href="https://weighttrack-nybjgcue.manus.space/" target="_blank" rel="noopener noreferrer">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-            <circle cx="12" cy="12" r="8" stroke-width="2"/>
-            <circle cx="12" cy="12" r="4" stroke-width="2"/>
-          </svg>
-          餐量管理
-        </a>
-        <a href="https://www.facebook.com/share/1AKXeZNDvd" target="_blank" rel="noopener">
-          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7v-3h3.4V9.5c0-3.3 2-5.1 5-5.1 1.4 0 2.8.3 2.8.3v3h-1.6c-1.6 0-2.1 1-2.1 2V12h3.6l-.6 3h-3v7A10 10 0 0 0 22 12Z"/></svg>
-          FB
-        </a>
-        <a href="https://alfawise.world" target="_blank" rel="noopener">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-            <circle cx="12" cy="12" r="4" stroke-width="2"/>
-            <line x1="12" y1="2" x2="12" y2="5" stroke-width="2"/>
-            <line x1="12" y1="19" x2="12" y2="22" stroke-width="2"/>
-            <line x1="2" y1="12" x2="5" y2="12" stroke-width="2"/>
-            <line x1="19" y1="12" x2="22" y2="12" stroke-width="2"/>
-            <line x1="4.22" y1="4.22" x2="6.34" y2="6.34" stroke-width="2"/>
-            <line x1="17.66" y1="17.66" x2="19.78" y2="19.78" stroke-width="2"/>
-            <line x1="4.22" y1="19.78" x2="6.34" y2="17.66" stroke-width="2"/>
-            <line x1="17.66" y1="6.34" x2="19.78" y2="4.22" stroke-width="2"/>
-          </svg>
-          日光官網
-        </a>
-        <a href="https://ai168.tw" target="_blank" rel="noopener">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-            <circle cx="6" cy="12" r="3" stroke-width="2"/>
-            <circle cx="18" cy="6" r="3" stroke-width="2"/>
-            <circle cx="18" cy="18" r="3" stroke-width="2"/>
-            <line x1="9" y1="11" x2="15" y2="7" stroke-width="2"/>
-            <line x1="9" y1="13" x2="15" y2="17" stroke-width="2"/>
-          </svg>
-          百業互聯
-        </a>
-      </div>
-    </div>
-    
+
+    <!-- 名單跟進 -->
     <div id="followupManageCard" class="card card-pink">
-      <div class="section-title">名單跟進管理</div>
-      <div class="row">
-        <div class="col"><input id="builderInput" class="input" placeholder="經營者姓名（輸入後按新增）" /></div>
-        <div class="col"><button id="addBuilderBtn" class="btn" style="width:100%">新增經營者</button></div>
+      <div class="section-title">👥 名單跟進管理</div>
+      <div style="display: flex; gap: 8px;">
+        <input id="nameInput" class="input" placeholder="夥伴姓名..." />
+        <select id="nameType" class="input" style="flex: 0 0 100px;">
+            <option value="builder">經營者</option>
+            <option value="customer">消費者</option>
+        </select>
+        <button id="addNameBtn" class="btn">添加</button>
       </div>
-      <div class="space"></div>
-      <div id="builderCards" class="cards"></div>
-      <div class="space"></div>
-      <div class="row">
-        <div class="col"><input id="customerInput" class="input" placeholder="消費者姓名（輸入後按新增）" /></div>
-        <div class="col"><button id="addCustomerBtn" class="btn" style="width:100%">新增消費者</button></div>
-      </div>
-      <div class="space"></div>
-      <div id="customerCards" class="cards"></div>
-      <div class="muted">提示：長按名字膠囊 0.6 秒可刪除</div>
+      <div id="namesDisplay" class="names-container"></div>
+      <p class="muted" style="font-size: 11px; margin-top: 15px;">💡 點擊名字寫筆記；點擊「×」刪除名單。</p>
     </div>
-    
-    <div class="space"></div>
+
+    <div id="calendarCard" class="card">
+      <div class="section-title">重構日曆</div>
+      <div id="calendar" class="cal-grid"></div>
+    </div>
+
+    <!-- 行動計畫卡片 (智慧回填) -->
     <div id="planInputCard" class="card card-blue">
-      <div class="section-title">行動計畫</div>
+      <div class="section-title">📅 行動計畫紀錄</div>
       <div class="row">
-        <div class="col"><input id="planDate" class="input" type="date" placeholder="日期" /></div>
-        <div class="col"><input id="planTarget" class="input" placeholder="目標" /></div>
+        <div class="col"><input id="planDate" class="input" type="date" /></div>
+        <div class="col"><input id="planTarget" class="input" placeholder="今日總目標" /></div>
       </div>
-      <div class="space"></div>
+      <div style="height:10px"></div>
       <div class="row">
-        <div class="col"><input id="planTime1" class="input" type="time" placeholder="時間1" /></div>
-        <div class="col"><input id="planAction1" class="input" placeholder="行動內容1" /></div>
+        <div class="col"><input id="planTime1" class="input" type="time" /></div>
+        <div class="col"><input id="planAction1" class="input" placeholder="具體行動內容" /></div>
       </div>
-      <div class="space"></div>
-      <div class="row">
-        <div class="col"><input id="planTime2" class="input" type="time" placeholder="時間2" /></div>
-        <div class="col"><input id="planAction2" class="input" placeholder="行動內容2" /></div>
-      </div>
-      <div class="space"></div>
-      <div class="row">
-        <div class="col"><input id="planTime3" class="input" type="time" placeholder="時間3" /></div>
-        <div class="col"><input id="planAction3" class="input" placeholder="行動內容3" /></div>
-      </div>
-      <div class="space"></div>
-      <div class="row">
-        <div class="col"><input id="planTime4" class="input" type="time" placeholder="時間4" /></div>
-        <div class="col"><input id="planAction4" class="input" placeholder="行動內容4" /></div>
-      </div>
-      <div class="space"></div>
-      <div class="row">
-        <div class="col"><input id="planTime5" class="input" type="time" placeholder="時間5" /></div>
-        <div class="col"><input id="planAction5" class="input" placeholder="行動內容5" /></div>
-      </div>
-      <div class="space"></div>
-      <button id="addPlanBtn" class="btn">新增卡片</button>
+      <div style="height:15px"></div>
+      <button id="addPlanBtn" class="btn" style="width:100%">新增當日計畫卡片</button>
     </div>
-    <div class="space"></div>
     <div id="planCards" class="cards"></div>
-    
-    <div class="space"></div>
-    
-    
-    <div class="space"></div>
-    <button id="completeBtn" class="btn" style="display:none">標記今日完成</button>
-  </div>
 
-  
-
-  <div class="footer">© 90天消費共營計劃.mata設計</div>
-</div>
-
-<div id="deleteModalBackdrop" class="modal-backdrop">
-  <div class="modal">
-    <div class="title">是否刪除這個名字？</div>
-    <div class="space"></div>
-    <div class="row">
-      <div class="col">
-        <button id="deleteYes" class="btn" style="width:100%">是</button>
-      </div>
-      <div class="col">
-        <button id="deleteNo" class="btn" style="width:100%;background:#8a2a2a">否</button>
-      </div>
+    <!-- Dan Koe 夜晚區 -->
+    <div class="card card-dark">
+      <div class="section-title">🌙 睡前復盤</div>
+      <div class="muted" style="color:#d1c4bc">今天有沒有「內在模式」阻礙了我？而非怪罪環境。</div>
+      <textarea id="enemyInsight" class="textarea" style="background:#4a3b32; color:#fff; border:none; margin-top:10px;" placeholder="例如：我今天的敵人是『追求安全感的逃避』..."></textarea>
+      <button id="saveInsightBtn" class="btn" style="background:#ffcf99; color:#33231a; width:100%; margin-top:10px;">壓縮今日洞察</button>
     </div>
   </div>
-</div>
 
-<div id="modalBackdrop" class="modal-backdrop">
-  <div class="modal">
-    <div class="title">今日行動是否完成？</div>
-    <div class="space"></div>
-    <div class="row">
-      <div class="col">
-        <button id="modalYes" class="btn" style="width:100%">是，已完成</button>
-      </div>
-      <div class="col">
-        <button id="modalNo" class="btn" style="width:100%;background:#8a2a2a">否，尚未</button>
-      </div>
+  <!-- 頁尾橫式資源卡片 -->
+  <div class="card resource-card">
+    <div class="section-title" style="color:#2e7d32; font-size:16px;">🌐 日光資源</div>
+    <div class="resource-links">
+        <a href="https://www.facebook.com/alfawise.world" target="_blank">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7v-3h3.4V9.5c0-3.3 2-5.1 5-5.1 1.4 0 2.8.3 2.8.3v3h-1.6c-1.6 0-2.1 1-2.1 2V12h3.6l-.6 3h-3v7A10 10 0 0 0 22 12Z"/></svg>
+            FB
+        </a>
+        <a href="https://alfawise.world" target="_blank">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            官網
+        </a>
+        <a href="https://ai168.tw" target="_blank">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            店家互聯
+        </a>
     </div>
   </div>
+
+  <div class="footer">© 日光團隊90天消費共營計畫 · 版權所有.mata設計</div>
+</div>
+
+<!-- 彈窗模組：確認刪除 -->
+<div id="confirmModal" class="modal-backdrop">
+    <div class="modal">
+      <div class="title">確認移除此夥伴？</div>
+      <div style="height:20px"></div>
+      <div class="row">
+        <div class="col"><button id="confirmYes" class="btn" style="width:100%">確定</button></div>
+        <div class="col"><button id="confirmNo" class="btn" style="width:100%;background:#8a2a2a">取消</button></div>
+      </div>
+    </div>
+</div>
+
+<!-- 彈窗模組：跟進筆記 -->
+<div id="noteModal" class="modal-backdrop">
+    <div class="modal">
+      <div class="title" id="noteTitle">跟進紀錄</div>
+      <textarea id="noteText" class="textarea" style="min-height: 200px; margin-top: 10px;" placeholder="在此記錄溝通進度..."></textarea>
+      <div class="row" style="margin-top:15px">
+        <div class="col"><button id="saveNoteBtn" class="btn" style="width:100%">儲存</button></div>
+        <div class="col"><button id="closeNoteBtn" class="btn" style="width:100%;background:#8a2a2a">關閉</button></div>
+      </div>
+    </div>
+</div>
+
+<!-- 彈窗模組：Dan Koe 白天覺察 -->
+<div id="patternModal" class="modal-backdrop">
+    <div class="modal">
+      <div style="font-size: 40px;">🔍</div>
+      <div class="title" style="color: #ea8a37;">身分覺察時刻</div>
+      <div id="patternQuestion" style="font-size: 18px; font-weight: 700; line-height: 1.6; margin: 15px 0;"></div>
+      <p class="muted">暫停 10 秒，誠實的面對你的大腦。</p>
+      <button id="closePatternBtn" class="btn" style="width:100%; margin-top:15px">我已覺察，繼續創造</button>
+    </div>
 </div>
 
 <script id="presetData" type="application/json">
 {
-  "actions": [
-    "第1天：認清直銷的本質—分享價值，而不是推銷產品",
-    "第2天：設定你的90天目標（收入目標、團隊目標、學習目標）",
-    "第3天：熟悉公司背景、產品線、制度與品牌定位",
-    "第4天：建立你的個人故事（為何加入？為何是現在？）",
-    "第5天：列出你人生5大動力（健康、家人、財務、時間、夢想）",
-    "第6天：理解複製的重要性：簡單、可講、可複製",
-    "第7天：建立你的前三支必講話術：介紹自己 / 介紹產品 / 介紹商機",
-    "第8天：了解產品的核心價值（簡單、有效、好喝、方便）",
-    "第9天：學會說人話，而不是技術話（避免深奧成分）",
-    "第10天：每天使用產品，成為最佳見證者",
-    "第11天：學會用3句話講完產品",
-    "第12天：練習30秒產品故事",
-    "第13天：練習30秒商機故事",
-    "第14天：學習溝通三要素：真誠、利益、簡單",
-    "第15天：建立名單—不限親友，從需求找人而不是關係找人",
-    "第16天：名單分類（A熱、B溫、C冷）",
-    "第17天：學會需求問句（為什麼想變健康？為什麼想額外收入？）",
-    "第18天：學會找痛點不找對錯",
-    "第19天：建立每天3人以上聯繫習慣",
-    "第20天：學習社群溝通，不要硬塞資訊",
-    "第21天：練習講出產品的三大客戶族群",
-    "第22天：學會用見證說話，不要自己誇",
-    "第23天：蒐集5個消費者見證",
-    "第24天：蒐集5個分享者見證",
-    "第25天：蒐集3個經營者見證",
-    "第26天：學會用圖表、數字建立信任感",
-    "第27天：產品體驗日記—成為最佳示範",
-    "第28天：學會面對質疑（保持專業，不要反擊）",
-    "第29天：了解團隊文化與規則（你不是一個人）",
-    "第30天：學會複製團隊最有效流程",
-    "第31天：練習一起行動而不是單打獨鬥",
-    "第32天：學會在團隊群組專業發言",
-    "第33天：固定參與每週會議",
-    "第34天：與上線確認你的目標與進度",
-    "第35天：觀摩一次上線的分享流程",
-    "第36天：開始引導朋友加入體驗產品",
-    "第37天：學會做一場簡單產品體驗會",
-    "第38天：學會使用簡報或PPT輔助（越簡單越好）",
-    "第39天：學會帶新人認識產品流程",
-    "第40天：學會如何協助新人訂第一單",
-    "第41天：理解「不是每個人都會加入」是正常的",
-    "第42天：學會找對人，而不是找所有人",
-    "第43天：建立每日成功追蹤表（聯繫、邀約、成交）",
-    "第44天：學會整理顧客資料",
-    "第45天：顧客服務：學會三階段回訪（1天、7天、30天）",
-    "第46天：學會用問題式銷售（不是推，是讓對方說）",
-    "第47天：累積你的成功案例",
-    "第48天：學會用故事帶出價值，而不是理論",
-    "第49天：開始練習1對1商機說明",
-    "第50天：學會什麼是「消費者→分享者→經營者」的路徑",
-    "第51天：開始引導消費者分享心得",
-    "第52天：提供你的客戶可複製的內容（文字、影片、照片）",
-    "第53天：學會組織裂變的正確心法",
-    "第54天：建立屬於你的團隊群組",
-    "第55天：帶著新人一起行動—不是叫他做，是你做給他看",
-    "第56天：學會開線上說明會（Zoom/LINE）",
-    "第57天：學會快速講制度，不講太多細節",
-    "第58天：學會公司最有力量的制度亮點",
-    "第59天：學會用制度鼓勵新人，而不是壓力",
-    "第60天：了解直銷中最難的是「堅持」不是「技巧」",
-    "第61天：了解你的情緒管理",
-    "第62天：避免三大新人陷阱：分析太多、問太多、做太少",
-    "第63天：不要與負面的人糾纏，把時間放在願意的人身上",
-    "第64天：學會拍攝短影片介紹產品（簡單故事即可）",
-    "第65天：打造你的個人品牌（健康、生活、理念）",
-    "第66天：建立社群排程（固定分享價值、見證、生活）",
-    "第67天：建立你的產品資料庫（圖、文、影片）",
-    "第68天：建立你的常見QA資料庫",
-    "第69天：整理你的演講話術（開場、產品、商機）",
-    "第70天：學會做一場15分鐘商機說明",
-    "第71天：了解誰才是你的真正市場（需求>關係）",
-    "第72天：學會三大成交技巧：選擇題、見證、下一步",
-    "第73天：學會如何讓顧客願意持續使用產品",
-    "第74天：學會讓顧客轉介紹、轉分享",
-    "第75天：開始培育第一位經營者",
-    "第76天：學會分辨想做 vs. 真的會做的人",
-    "第77天：把焦點放在3個願意做的人，而不是抱怨的人",
-    "第78天：回顧你的產品故事並更新版本",
-    "第79天：回顧你的商機故事並更新版本",
-    "第80天：整理你的每月數據（邀約/成交/續訂）",
-    "第81天：建立你的個人90天循環系統",
-    "第82天：把流程簡化給你的新人（越簡單越能複製）",
-    "第83天：建立你的「一頁式產品講義」",
-    "第84天：建立你的「一頁式商機講義」",
-    "第85天：學會激勵團隊（肯定、陪伴、方向）",
-    "第86天：學會處理團隊問題（溝通、調整、延續）",
-    "第87天：建立你的團隊文化（正面、行動、紀律）",
-    "第88天：打造一個新人7天啟動流程",
-    "第89天：打造一個新人30天複製流程",
-    "第90天：調整下一個90天目標—正式進入領導者角色"
-  ],
-  "knowledge": [
-    "第1天：今天開始，我選擇成為更好的自己，而不是更好的別人。",
-    "第2天：真正能改變人生的，是我每天一點點的行動。",
-    "第3天：成功不靠運氣，而是靠持續出現。",
-    "第4天：我有能力學會任何讓我成功的技能。",
-    "第5天：每一次分享，都讓我更接近我的目標。",
-    "第6天：我值得賺更多，也值得更好的生活。",
-    "第7天：拒絕不是否定，是提醒我要找到對的人。",
-    "第8天：行動治百憂，不行動才會焦慮。",
-    "第9天：我越專業，客戶越信任我。",
-    "第10天：先成為那個讓人願意跟隨的人。",
-    "第11天：每天學一點，半年後我會有巨大差距。",
-    "第12天：困難不是阻礙，而是成長的入口。",
-    "第13天：怕什麼學什麼，缺什麼補什麼。",
-    "第14天：我值得擁有我的目標，也有資格追求它。",
-    "第15天：我選擇相信自己，而不是懷疑自己。",
-    "第16天：今天的努力，是明天的禮物。",
-    "第17天：我不需要一次做完，只需要開始做。",
-    "第18天：越分享，越幸運；越行動，越成功。",
-    "第19天：每次開口，就是一次練功。",
-    "第20天：我不是推銷，我是在提供價值。",
-    "第21天：我說的話，對的人會聽得懂。",
-    "第22天：我專注在願意的人，而不是浪費在拒絕的人。",
-    "第23天：做對的事情，比討好每一個人重要。",
-    "第24天：成功不是看速度，而是看方向。",
-    "第25天：我每天都在累積能量，而不是浪費時間。",
-    "第26天：我越鍛鍊，越自信。",
-    "第27天：同樣的苦，成功的人選擇堅持，平庸的人選擇放棄。",
-    "第28天：我不比較，我進步就好。",
-    "第29天：越想做大，就越要提升自己的格局。",
-    "第30天：我願意為我的未來負責，不怪罪、不抱怨。",
-    "第31天：我值得被看見，也值得被選擇。",
-    "第32天：只要不放棄，晚一點成功不是問題。",
-    "第33天：成功不是爆發，是累積。",
-    "第34天：我的夢想需要我主動捍衛。",
-    "第35天：我相信自己所做的每一步都算數。",
-    "第36天：我越正面，越能吸引正面的人。",
-    "第37天：我用態度創造機會。",
-    "第38天：恐懼是假象，行動才是真的力量。",
-    "第39天：沒有一件小事是不重要的。",
-    "第40天：我正在成為團隊中可靠的人。",
-    "第41天：每天一點勇氣，很快我會變得不可阻擋。",
-    "第42天：成功者不是沒有壓力，是能把壓力變成力量。",
-    "第43天：我把挫折當老師，而不是敵人。",
-    "第44天：如果我願意學，我就一定會變強。",
-    "第45天：我做每件事都值得未來的我感謝。",
-    "第46天：我的行動會創造結果，而不是運氣。",
-    "第47天：我在挑戰自己，而不是討好任何人。",
-    "第48天：習慣不會騙人，結果會。",
-    "第49天：我越努力，就越有選擇權。",
-    "第50天：我要讓家人、團隊、未來的我感到驕傲。",
-    "第51天：我不是孤單，我是團隊的一份力量。",
-    "第52天：我的價值會吸引值得的人。",
-    "第53天：現在的付出，是未來的被動收入。",
-    "第54天：我靠專業建立信任，不靠話術。",
-    "第55天：每次練習，都讓我離高手更近一步。",
-    "第56天：我的故事，就是最好的推廣工具。",
-    "第57天：我願意再多走一步，因為那一步通常有奇蹟。",
-    "第58天：我不是被要求，我是自願成功。",
-    "第59天：我做的每個決定，都讓我的生活更清晰。",
-    "第60天：目標是我的方向，不是我的壓力。",
-    "第61天：當我變得穩定，收入也會變得穩定。",
-    "第62天：我要吸引同頻的人，而不是硬拉不願意的人。",
-    "第63天：放大長處，而不是盯著短處。",
-    "第64天：我願意為自己的夢想努力到讓自己感動。",
-    "第65天：我越清楚自己的價值，越能影響他人。",
-    "第66天：不急於結果，只踏實於行動。",
-    "第67天：我正在打造一個循環收入的未來。",
-    "第68天：我不是找客戶，我是在找願意變好的人。",
-    "第69天：我越分享，越能吸引和我一樣的人。",
-    "第70天：我值得成功，也準備好成功。",
-    "第71天：每天讓一件事比昨天更好，我就會變強。",
-    "第72天：我每講一次，我就進步一次。",
-    "第73天：我不是在工作，而是在打造我的事業。",
-    "第74天：我相信付出不會白費。",
-    "第75天：成功需要時間，而我願意等待又努力。",
-    "第76天：我成為別人生命中的改變者。",
-    "第77天：我越穩定，越能帶出穩定的團隊。",
-    "第78天：不被看好不等於做不到。",
-    "第79天：真正的高手都是從笨拙開始的。",
-    "第80天：我每天都在為自己的夢想前進。",
-    "第81天：我選擇勇敢，而不是退縮。",
-    "第82天：我比自己想像的更有力量。",
-    "第83天：我相信自己可以做到，即使需要時間。",
-    "第84天：我的成功，是日積月累的結果。",
-    "第85天：我正在成為領袖，而不是跟隨者。",
-    "第86天：我願意承擔，我也願意突破。",
-    "第87天：我相信我的團隊，也相信我的未來。",
-    "第88天：我值得被信任，也值得被跟隨。",
-    "第89天：我已經比 90 天前的自己更強大。",
-    "第90天：今天開始，我要把這份力量傳給下一個人。"
-  ]
+  "actions": ["第1天：認清直銷的本質—分享價值", "第2天：設定你的90天目標", "第3天：熟悉公司背景與制度", "第4天：建立你的個人故事", "第5天：列出你人生5大動力", "第6天：理解複製的重要性", "第7天：建立必講話術", "第8天：了解產品核心價值", "第9天：學會說人話", "第10天：每天使用產品"],
+  "knowledge": ["第1天：今天開始，我選擇成為更好的自己", "第2天：真正能改變人生的，是每天的行動", "第3天：成功不靠運氣，靠持續出現", "第4天：我有能力學會任何技能", "第5天：每一次分享都讓我接近目標"]
 }
 </script>
-<script src="app.js"></script>
+
+<script>
+/**
+ * 全方位系統整合邏輯
+ */
+const S={
+    get(k){try{const v=localStorage.getItem(k); return v?JSON.parse(v):null}catch(e){return null}},
+    set(k,v){localStorage.setItem(k,JSON.stringify(v))},
+    del(k){localStorage.removeItem(k)}
+};
+
+const K="dlp.nickname", D="dlp.startDate", R="dlp.rankTarget", KCARDS="dlp.planCards", INSIGHTS="dlp.insights";
+const PV30="dlp.pv30", PV60="dlp.pv60", PV90="dlp.pv90";
+const HMAIN="dlp.health", HP30="dlp.hp30", HP60="dlp.hp60", HP90="dlp.hp90";
+
+const HUMOR_LINES=["今天不完美，但我很可愛", "失敗不可怕，可怕的是沒笑容", "減肥不難，我有餐量管理+神飲", "做自己版本的主角", "要把可愛發給世界", "保持幽默，你的努力會被看見"];
+const DAN_KOE_QS = ["「我現在這件事是在逃避什麼？」", "「我正在靠近我討厭的生活，還是我想要的生活？」", "「我在哪些地方用安全感交換了活著的感覺？」"];
+
+function dayNumber(){
+    const startTs = S.get(D);
+    if(!startTs) return null;
+    return Math.max(1, Math.min(90, Math.floor((Date.now() - startTs) / 86400000) + 1));
+}
+
+function triggerPatternBreak() {
+    const now = new Date();
+    const h = now.getHours();
+    if ((h >= 11 && h <= 12) || (h >= 15 && h <= 16)) {
+        const last = S.get('dlp.lastCheck');
+        if (last !== now.toDateString()) {
+            const qEl = document.getElementById('patternQuestion');
+            if (qEl) qEl.textContent = DAN_KOE_QS[Math.floor(Math.random()*DAN_KOE_QS.length)];
+            const modal = document.getElementById('patternModal');
+            if (modal) modal.style.display = 'flex';
+            S.set('dlp.lastCheck', now.toDateString());
+        }
+    }
+}
+
+function renderLists(){
+    const container = document.getElementById("namesDisplay");
+    if(!container) return;
+    const bs = S.get('dlp.builders') || [];
+    const cs = S.get('dlp.customers') || [];
+    const build = (n, type, idx) => `
+        <div class="name-pill" onclick="openNote('${type}', ${idx})" style="background:${type==='builder'?'#fff1f5':'#f1f7ff'}">
+            <span>${typeof n === 'string' ? n : n.name}</span>
+            <span style="font-size:10px; opacity:0.6">${type==='builder'?'💎':'🛒'}</span>
+            <div class="del-btn" onclick="triggerDelete(event, '${type}', ${idx})">×</div>
+        </div>`;
+    container.innerHTML = bs.map((n, i) => build(n, 'builder', i)).join("") + cs.map((n, i) => build(n, 'customer', i)).join("");
+}
+
+function renderPlanCards(){
+    const el=document.getElementById("planCards");
+    if (!el) return;
+    const cards = S.get(KCARDS) || [];
+    el.innerHTML = [...cards].reverse().map(c => `
+        <div class="card card-blue">
+            <div class="section-title" style="font-size:15px; margin-bottom:5px;">📅 ${c.date}</div>
+            <div class="muted"><b>總目標：</b>${c.target}</div>
+            ${(c.items||[]).map(i=>`<div class="muted">📍 時間：${i.time} | 行動：${i.action}</div>`).join("")}
+        </div>
+    `).join("");
+}
+
+function renderCalendar(today){
+    const container=document.getElementById("calendar");
+    if (!container) return;
+    const nowDate=new Date();
+    const y=nowDate.getFullYear(), m=nowDate.getMonth();
+    const first=new Date(y, m, 1), last=new Date(y, m+1, 0);
+    const days=last.getDate(), startDow=first.getDay();
+    let html=`<div class="cal-header" style="color:#7a3a10; font-weight:800;"><div>${y}/${m+1}</div></div><div class="cal-grid">`;
+    const dows=["日","一","二","三","四","五","六"];
+    html += dows.map(d=>`<div class="cal-cell" style="background:#fff8ef; font-size:12px; font-weight:800; border-color:#ffd4ad;">${d}</div>`).join("");
+    for(let i=0; i<startDow; i++) html += `<div class="cal-cell" style="border:none"></div>`;
+    for(let d=1; d<=days; d++){
+        const isToday = (nowDate.getDate()===d);
+        html += `<div class="cal-cell ${isToday?'cal-today':''}">${d}</div>`;
+    }
+    container.innerHTML = html + "</div>";
+}
+
+function render(){
+    const start=S.get(D), nick=S.get(K);
+    const vStart=document.getElementById("view-start"), vDaily=document.getElementById("view-daily");
+    if(!start || !nick){
+        if (vStart) vStart.style.display="";
+        if (vDaily) vDaily.style.display="none";
+        return;
+    }
+    if (vStart) vStart.style.display="none";
+    if (vDaily) vDaily.style.display="";
+    
+    const d = dayNumber();
+    const dnEl = document.getElementById("dayNum"); if(dnEl) dnEl.textContent = d;
+    const nlEl = document.getElementById("nicknameLabel"); if(nlEl) nlEl.textContent = nick;
+    const rlEl = document.getElementById("rankLabel"); if(rlEl) rlEl.textContent = S.get(R);
+    
+    const pv30El = document.getElementById("pv30Label"); if(pv30El) pv30El.textContent = S.get(PV30)||"0";
+    const pv60El = document.getElementById("pv60Label"); if(pv60El) pv60El.textContent = S.get(PV60)||"0";
+    const pv90El = document.getElementById("pv90Label"); if(pv90El) pv90El.textContent = S.get(PV90)||"0";
+    
+    const hpEl = document.getElementById("healthPlanLabel"); if(hpEl) hpEl.textContent = S.get(HMAIN)||"未選";
+    const hp30El = document.getElementById("hp30Label"); if(hp30El) hp30El.textContent = S.get(HP30)||"";
+    const hp60El = document.getElementById("hp60Label"); if(hp60El) hp60El.textContent = S.get(HP60)||"";
+    const hp90El = document.getElementById("hp90Label"); if(hp90El) hp90El.textContent = S.get(HP90)||"";
+    
+    const sd = new Date(start);
+    const sdEl = document.getElementById("startDate"); if(sdEl) sdEl.textContent = `${sd.getFullYear()}/${sd.getMonth()+1}/${sd.getDate()}`;
+    const ed = new Date(start + 89*86400000);
+    const edEl = document.getElementById("endDate"); if(edEl) edEl.textContent = `${ed.getFullYear()}/${ed.getMonth()+1}/${ed.getDate()}`;
+    const cdEl = document.getElementById("countdownNum"); if(cdEl) cdEl.textContent = 90 - d + 1;
+    
+    const idEl = document.getElementById('displayIdentity'); if(idEl) idEl.textContent = S.get('dlp.identity') || "未設定身分";
+    const avEl = document.getElementById('displayAntiVision'); if(avEl) avEl.textContent = S.get('dlp.antiVision') || "未設定反願景";
+    
+    const stages = ["衝動型", "自我保護型", "從眾型", "自我覺察型", "自律良知型", "個體主義型", "策略型", "建構覺察型", "合一型"];
+    const msEl = document.getElementById('mindsetStage'); if(msEl) msEl.textContent = `心智進化階級：${stages[Math.min(Math.floor((d-1)/10), 8)]}`;
+
+    const cardH = document.getElementById("cardHumor");
+    if(cardH) cardH.onclick=()=>{ cardH.textContent=HUMOR_LINES[Math.floor(Math.random()*HUMOR_LINES.length)]; cardH.classList.add("revealed") };
+    
+    const data = JSON.parse(document.getElementById("presetData").textContent);
+    const cardK = document.getElementById("cardKnowledge");
+    if(cardK) cardK.onclick=()=>{ cardK.textContent=data.knowledge[d-1] || "能量注入中..."; cardK.classList.add("revealed") };
+    
+    const cardA = document.getElementById("cardAction");
+    if(cardA) cardA.onclick=()=>{ cardA.textContent=data.actions[d-1] || "行動清單載入中..."; cardA.classList.add("revealed") };
+
+    renderLists();
+    renderPlanCards();
+    renderCalendar(d);
+    triggerPatternBreak();
+}
+
+/**
+ * 初始化
+ */
+window.onload = () => {
+    const startBtn = document.getElementById("startBtn");
+    if (startBtn) {
+        startBtn.onclick = () => {
+            const n=document.getElementById("nickname").value, r=document.getElementById("rankTarget").value;
+            if(!n || !r) return alert("請填寫姓名與目標聘階！");
+            S.set(K, n); S.set(R, r); S.set(D, Date.now());
+            S.set(PV30, document.getElementById("pv30").value); S.set(PV60, document.getElementById("pv60").value); S.set(PV90, document.getElementById("pv90").value);
+            S.set(HP30, document.getElementById("hp30").value); S.set(HP60, document.getElementById("hp60").value); S.set(HP90, document.getElementById("hp90").value);
+            const hp = document.querySelector('input[name="healthPlanType"]:checked');
+            if(hp) S.set(HMAIN, hp.value);
+            S.set('dlp.antiVision', document.getElementById('antiVision').value);
+            S.set('dlp.identity', document.getElementById('identityGoal').value);
+            render();
+        };
+    }
+
+    const addPlanBtn = document.getElementById("addPlanBtn");
+    if (addPlanBtn) {
+        addPlanBtn.onclick = () => {
+            const d=document.getElementById("planDate").value, t=document.getElementById("planTarget").value;
+            const time=document.getElementById("planTime1").value, act=document.getElementById("planAction1").value;
+            if(!d || !t || !act) return alert("請填寫日期、總目標與行動內容！");
+            const cards = S.get(KCARDS) || [];
+            cards.push({date:d, target:t, items:[{time, action:act}]});
+            S.set(KCARDS, cards);
+            renderPlanCards();
+            const actInput = document.getElementById("planAction1"); if(actInput) actInput.value = "";
+            const timeInput = document.getElementById("planTime1"); if(timeInput) timeInput.value = "";
+        };
+    }
+
+    const addBuilderBtn = document.getElementById("addBuilderBtn");
+    if (addBuilderBtn) {
+        addBuilderBtn.onclick = () => {
+            const v = document.getElementById("builderInput").value; if(!v) return;
+            const l = S.get('dlp.builders') || []; l.push({name:v, note:""}); S.set('dlp.builders', l);
+            document.getElementById("builderInput").value = ""; renderLists();
+        };
+    }
+    const addCustomerBtn = document.getElementById("addCustomerBtn");
+    if (addCustomerBtn) {
+        addCustomerBtn.onclick = () => {
+            const v = document.getElementById("customerInput").value; if(!v) return;
+            const l = S.get('dlp.customers') || []; l.push({name:v, note:""}); S.set('dlp.customers', l);
+            document.getElementById("customerInput").value = ""; renderLists();
+        };
+    }
+
+    const saveInsightBtn = document.getElementById("saveInsightBtn");
+    if (saveInsightBtn) {
+        saveInsightBtn.onclick = () => {
+            const insights = S.get(INSIGHTS) || {};
+            insights[new Date().toDateString()] = document.getElementById("enemyInsight").value;
+            S.set(INSIGHTS, insights);
+            alert("今日敵人已定義，覺察已生效。");
+        };
+    }
+
+    const closePatternBtn = document.getElementById("closePatternBtn");
+    if (closePatternBtn) closePatternBtn.onclick = () => { document.getElementById('patternModal').style.display='none'; };
+    
+    const closeNoteBtn = document.getElementById('closeNoteBtn');
+    if (closeNoteBtn) closeNoteBtn.onclick = () => { document.getElementById('noteModal').style.display='none'; };
+
+    const confirmNo = document.getElementById('confirmNo');
+    if (confirmNo) confirmNo.onclick = () => { document.getElementById('confirmModal').style.display = 'none'; };
+
+    const saveNoteBtn = document.getElementById('saveNoteBtn');
+    if (saveNoteBtn) {
+        saveNoteBtn.onclick = () => {
+            const key = activeItem.type==='builder'?'dlp.builders':'dlp.customers';
+            const list = S.get(key);
+            list[activeItem.idx].note = document.getElementById('noteText').value;
+            S.set(key, list);
+            document.getElementById('noteModal').style.display='none';
+        };
+    }
+
+    const confirmYes = document.getElementById('confirmYes');
+    if (confirmYes) {
+        confirmYes.onclick = () => {
+            const key = pendingDel.type==='builder'?'dlp.builders':'dlp.customers';
+            const list = S.get(key); list.splice(pendingDel.idx, 1); S.set(key, list);
+            document.getElementById('confirmModal').style.display = 'none'; renderLists();
+        };
+    }
+
+    const resetBtn = document.getElementById("resetBtn");
+    if (resetBtn) resetBtn.onclick = () => { if(confirm("確定重設系統嗎？這會清除所有進度。")) { localStorage.clear(); location.reload(); } };
+
+    const dInput = document.getElementById("planDate");
+    if (dInput) {
+        dInput.value = new Date().toISOString().split('T')[0];
+        dInput.onchange = (e) => {
+            const cards = S.get(KCARDS) || [];
+            const found = [...cards].reverse().find(c => c.date === e.target.value);
+            if(found) document.getElementById("planTarget").value = found.target;
+        };
+    }
+
+    render();
+};
+
+let activeItem = null;
+function openNote(type, idx) {
+    activeItem = { type, idx };
+    const list = S.get(type==='builder'?'dlp.builders':'dlp.customers');
+    document.getElementById('noteTitle').textContent = `跟進紀錄：${list[idx].name}`;
+    document.getElementById('noteText').value = list[idx].note || "";
+    document.getElementById('noteModal').style.display='flex';
+}
+
+let pendingDel = null;
+function triggerDelete(e, type, idx) {
+    e.stopPropagation(); pendingDel = { type, idx };
+    document.getElementById('confirmModal').style.display = 'flex';
+}
+</script>
 </body>
 </html>
